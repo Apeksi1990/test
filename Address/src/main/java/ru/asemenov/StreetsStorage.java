@@ -6,16 +6,16 @@ import ru.asemenov.models.Street;
 
 import java.util.List;
 
-public class AddressStorage {
+public class StreetsStorage {
     private final SessionFactory factory = HibernateFactory.getFactory();
 
-    private static final AddressStorage instance = new AddressStorage();
+    private static final StreetsStorage instance = new StreetsStorage();
 
-    public static AddressStorage getInstance() {
+    public static StreetsStorage getInstance() {
         return instance;
     }
 
-    private AddressStorage() {
+    private StreetsStorage() {
     }
 
     public List<Street> getAllStreets() {
