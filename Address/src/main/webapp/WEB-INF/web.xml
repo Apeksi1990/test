@@ -1,0 +1,11 @@
+<web-app>
+    <servlet>
+        <servlet-name>Name</servlet-name>
+        <servlet-class>ru.asemenov.Path</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Name</servlet-name>
+        <url-pattern>/path</url-pattern>
+    </servlet-mapping>
+</web-app>
