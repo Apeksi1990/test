@@ -1,7 +1,8 @@
-package ru.asemenov;
+package ru.asemenov.storage;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import ru.asemenov.HibernateFactory;
 import ru.asemenov.models.Street;
 
 import java.util.List;
