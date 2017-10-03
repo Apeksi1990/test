@@ -2,7 +2,7 @@ package ru.asemenov.storage;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import ru.asemenov.HibernateFactory;
+import ru.asemenov.service.HibernateFactory;
 import ru.asemenov.models.Apartment;
 
 import java.util.List;

@@ -6,6 +6,7 @@ import org.junit.Test;
 import ru.asemenov.models.Apartment;
 import ru.asemenov.models.House;
 import ru.asemenov.models.Street;
+import ru.asemenov.service.HibernateFactory;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class HibTest {
     @Test
     public void streets() {
         final SessionFactory factory = HibernateFactory.getFactory();
-        List<Street> streets = null;
+        List streets = null;
         try (Session session = factory.openSession()) {
             session.beginTransaction();
             streets = session.createQuery("from Street").list();
@@ -22,7 +23,7 @@ public class HibTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        for (Street street: streets) {
+        for (Object street: streets) {
             System.out.println(street.toString());
         }
     }

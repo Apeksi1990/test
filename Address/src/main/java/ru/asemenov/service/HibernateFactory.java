@@ -1,4 +1,4 @@
-package ru.asemenov;
+package ru.asemenov.service;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

@@ -1,11 +1,31 @@
 <web-app>
     <servlet>
-        <servlet-name>Name</servlet-name>
-        <servlet-class>ru.asemenov.Path</servlet-class>
+        <servlet-name>Apartment</servlet-name>
+        <servlet-class>ru.asemenov.servlets.ApartmentServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>Name</servlet-name>
-        <url-pattern>/path</url-pattern>
+        <servlet-name>Apartment</servlet-name>
+        <url-pattern>/apartment</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>House</servlet-name>
+        <servlet-class>ru.asemenov.servlets.HouseServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>House</servlet-name>
+        <url-pattern>/house</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Street</servlet-name>
+        <servlet-class>ru.asemenov.servlets.StreetServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Street</servlet-name>
+        <url-pattern>/street</url-pattern>
     </servlet-mapping>
 </web-app>
