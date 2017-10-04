@@ -30,4 +30,14 @@ public class StreetsStorage {
         }
         return streets;
     }
+
+    public void addStreet(Street street) {
+        try (Session session = factory.openSession()) {
+            session.beginTransaction();
+            session.save(street);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

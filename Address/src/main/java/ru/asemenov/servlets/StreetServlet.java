@@ -27,6 +27,8 @@ public class StreetServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        Street street = new Street();
+        street.setName(req.getParameter("name"));
+        StreetsStorage.getInstance().addStreet(street);
     }
 }

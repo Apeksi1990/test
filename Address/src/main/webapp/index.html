@@ -14,7 +14,7 @@
 <div class="container">
     <div class="input-group">
         <div class="input-group-btn">
-            <button class="btn btn-default">Добавить улицу</button>
+            <button class="btn btn-default" onclick="modalStreet()">Добавить улицу</button>
         </div>
         <select class="form-control" name="street" id="street_id">
             <option value="">Выбрать улицу</option>
@@ -35,6 +35,27 @@
         <select class="form-control" name="apartment" id="apartment_id">
             <option value="">Выбрать квартиру</option>
         </select>
+    </div>
+</div>
+<div class="container">
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>

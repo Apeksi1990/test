@@ -1,62 +1,26 @@
 package ru.asemenov;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.junit.Test;
-import ru.asemenov.models.Apartment;
-import ru.asemenov.models.House;
-import ru.asemenov.models.Street;
-import ru.asemenov.service.HibernateFactory;
-
-import java.util.List;
 
 public class HibTest {
 
     @Test
-    public void streets() {
-        final SessionFactory factory = HibernateFactory.getFactory();
-        List streets = null;
-        try (Session session = factory.openSession()) {
-            session.beginTransaction();
-            streets = session.createQuery("from Street").list();
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        for (Object street: streets) {
-            System.out.println(street.toString());
-        }
-    }
+    public void testik() {
+        String a = "qwe";
+        String a1 = "qwe";
+        String a2 = new String("qwe");
+        String b = "asd";
+        System.out.println(a + b);
 
-    @Test
-    public void houses() {
-        final SessionFactory factory = HibernateFactory.getFactory();
-        List<House> streets = null;
-        try (Session session = factory.openSession()) {
-            session.beginTransaction();
-            streets = session.createQuery("from House").list();
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        for (House street: streets) {
-            System.out.println(street.toString());
-        }
-    }
+        String c = "123";
+        String d = "456";
+        System.out.println(c + d);
 
-    @Test
-    public void apartaments() {
-        final SessionFactory factory = HibernateFactory.getFactory();
-        List<Apartment> streets = null;
-        try (Session session = factory.openSession()) {
-            session.beginTransaction();
-            streets = session.createQuery("from Apartment").list();
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        for (Apartment street: streets) {
-            System.out.println(street.toString());
-        }
+        int e = 1;
+        int f = 2;
+        System.out.println(e+f);
+
+        System.out.println(a == a1);
+        System.out.println(a == a2);
     }
 }
