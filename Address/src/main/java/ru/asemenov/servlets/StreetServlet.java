@@ -18,8 +18,8 @@ public class StreetServlet extends HttpServlet {
         GsonBuilder b = new GsonBuilder();
         b.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
         Gson gson = b.create();
-        List<Street> cars = StreetsStorage.getInstance().getAllStreets();
-        String json = gson.toJson(cars);
+        List<Street> streets = StreetsStorage.getInstance().getAllStreets();
+        String json = gson.toJson(streets);
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
         resp.getWriter().write(json);

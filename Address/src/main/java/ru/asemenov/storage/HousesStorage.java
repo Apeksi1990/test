@@ -2,6 +2,7 @@ package ru.asemenov.storage;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import ru.asemenov.service.HibernateFactory;
 import ru.asemenov.models.House;
 
@@ -19,11 +20,13 @@ public class HousesStorage {
     public HousesStorage() {
     }
 
-    public List<House> getAllHouses() {
+    public List<House> getAllHouses(int street) {
         List<House> houses = null;
         try (Session session = factory.openSession()) {
             session.beginTransaction();
-            houses = session.createQuery("from House").list();
+            Query query = session.createQuery("from House where street.id=:street");
+            query.setParameter("street", street);
+            houses = query.list();
             session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
