@@ -11,7 +11,13 @@ import org.hibernate.proxy.HibernateProxy;
 
 import java.io.IOException;
 
+/**
+ * Type Adapter.
+ */
 public class HibernateProxyTypeAdapter extends TypeAdapter<HibernateProxy> {
+    /**
+     * FACTORY.
+     */
     public static final TypeAdapterFactory FACTORY = new TypeAdapterFactory() {
         @Override
         @SuppressWarnings("unchecked")
@@ -19,8 +25,15 @@ public class HibernateProxyTypeAdapter extends TypeAdapter<HibernateProxy> {
             return (HibernateProxy.class.isAssignableFrom(type.getRawType()) ? (TypeAdapter<T>) new HibernateProxyTypeAdapter(gson) : null);
         }
     };
+    /**
+     * Context.
+     */
     private final Gson context;
 
+    /**
+     * Construction.
+     * @param context Gson.
+     */
     private HibernateProxyTypeAdapter(Gson context) {
         this.context = context;
     }

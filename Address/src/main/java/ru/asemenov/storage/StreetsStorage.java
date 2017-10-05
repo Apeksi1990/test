@@ -7,18 +7,37 @@ import ru.asemenov.models.Street;
 
 import java.util.List;
 
+/**
+ * Streets Storage.
+ */
 public class StreetsStorage {
+    /**
+     * SessionFactory.
+     */
     private final SessionFactory factory = HibernateFactory.getFactory();
+    /**
+     * Singleton.
+     */
+    private static final StreetsStorage INSTANCE = new StreetsStorage();
 
-    private static final StreetsStorage instance = new StreetsStorage();
-
+    /**
+     * Singleton.
+     * @return StreetsStorage.
+     */
     public static StreetsStorage getInstance() {
-        return instance;
+        return INSTANCE;
     }
 
+    /**
+     * Конструктор.
+     */
     private StreetsStorage() {
     }
 
+    /**
+     * Получить все улицы.
+     * @return List улиц.
+     */
     public List<Street> getAllStreets() {
         List<Street> streets = null;
         try (Session session = factory.openSession()) {
@@ -31,6 +50,10 @@ public class StreetsStorage {
         return streets;
     }
 
+    /**
+     * Добавить новую улицу.
+     * @param street новая улица.
+     */
     public void addStreet(Street street) {
         try (Session session = factory.openSession()) {
             session.beginTransaction();

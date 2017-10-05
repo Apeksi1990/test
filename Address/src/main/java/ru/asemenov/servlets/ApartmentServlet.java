@@ -5,7 +5,6 @@ import com.google.gson.GsonBuilder;
 import ru.asemenov.models.Apartment;
 import ru.asemenov.models.House;
 import ru.asemenov.storage.ApartmentsStorage;
-import ru.asemenov.storage.HousesStorage;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +13,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Apartment Servlet.
+ */
 public class ApartmentServlet extends HttpServlet {
+    /**
+     * Переопределенный метод doGet.
+     * @param req HttpServletRequest
+     * @param resp HttpServletResponse
+     * @throws ServletException исключение.
+     * @throws IOException исключение.
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         GsonBuilder b = new GsonBuilder();
@@ -28,6 +37,13 @@ public class ApartmentServlet extends HttpServlet {
         resp.getWriter().write(json);
     }
 
+    /**
+     * Переопределение метода doPost.
+     * @param req HttpServletRequest
+     * @param resp HttpServletResponse
+     * @throws ServletException исключение.
+     * @throws IOException исключение.
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Apartment apartment = new Apartment();

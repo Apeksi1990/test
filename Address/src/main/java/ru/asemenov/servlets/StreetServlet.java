@@ -12,7 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Street Servlet.
+ */
 public class StreetServlet extends HttpServlet {
+    /**
+     * Переопределенный метод doGet.
+     * @param req HttpServletRequest
+     * @param resp HttpServletResponse
+     * @throws ServletException исключение.
+     * @throws IOException исключение.
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         GsonBuilder b = new GsonBuilder();
@@ -25,6 +35,13 @@ public class StreetServlet extends HttpServlet {
         resp.getWriter().write(json);
     }
 
+    /**
+     * Переопределение метода doPost.
+     * @param req HttpServletRequest
+     * @param resp HttpServletResponse
+     * @throws ServletException исключение.
+     * @throws IOException исключение.
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Street street = new Street();

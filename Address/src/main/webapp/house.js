@@ -41,7 +41,7 @@ function clearHouse() {
 
 function modalHouse() {
     if ($('#street_id').val() == '') {
-        alert('Выберите улицу куда будет добавлен новый дом')
+        alert('Выберите улицу куда будет добавлен новый дом');
         return;
     }
     $('.modal-title').empty().append('Добавить новый дом');
@@ -71,4 +71,33 @@ function addNewHouse() {
     } else {
         alert('Введите название новой квартиры')
     }
+}
+
+function editHouse() {
+    if ($('#house_id').val() == '') {
+        alert('Выберите дом который требуется поменять');
+        return;
+    }
+    $('.modal-title').empty().append('Изменить привязку дома');
+    var body = $('.modal-body').empty();
+    body.append('<p>Выберите улицу куда перенести дом ' + $('#house_id option:selected').text() + ' с улицы ' + $('#street_id option:selected').text() + '</p>');
+    $('#street_id').clone().appendTo(body);
+    body.append($('<button type="button" class="btn btn-default" onclick="houseBDEdit()" data-dismiss="modal">Изменить</button>'));
+    $('#myModal').modal('show');
+}
+
+function houseBDEdit() {
+    var street = $('.modal-body').find('#street_id').val();
+    var house = $('#house_id').val();
+    $.ajax('./house', {
+        method: 'post',
+        data: {
+            street: street,
+            house: house
+        },
+        complete: function () {
+            getStreets();
+            clearHouse()
+        }
+    });
 }

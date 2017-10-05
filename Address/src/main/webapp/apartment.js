@@ -75,3 +75,67 @@ function addNewApartment() {
         alert('Введите название нового дома')
     }
 }
+
+function editApartment() {
+    if ($('#apartment_id').val() == '') {
+        alert('Выберите квартиру которую требуется поменять');
+        return;
+    }
+    $('.modal-title').empty().append('Изменить привязку квартиры');
+    var body = $('.modal-body').empty();
+    body.append('<p>Выберите улицу куда перенести квартиру ' + $('#apartment_id option:selected').text() + ' c адреса ' + $('#street_id option:selected').text() + ' ' + $('#house_id option:selected').text() + '</p>');
+    $('#street_id').clone().appendTo(body);
+    $('#house_id').clone().appendTo(body);
+    body.append($('<button type="button" class="btn btn-default" onclick="apartmentBDEdit()" data-dismiss="modal">Изменить</button>'));
+    $('#myModal').modal('show');
+}
+
+function apartmentBDEdit() {
+    var house = $('.modal-body').find('#house_id').val();
+    var apartment = $('#apartment_id').val();
+    $.ajax('./apartment', {
+        method: 'post',
+        data: {
+            apartment: apartment,
+            house: house
+        },
+        complete: function () {
+            getStreets();
+            clearHouse();
+            clearApartment()
+        }
+    });
+}
+
+$(document).ready(function () {
+    $('.modal-body').on('change', '#street_id', function () {
+        getApartHouse(this.value)
+    });
+});
+
+function getApartHouse(street) {
+    $.ajax('./house', {
+        method: 'get',
+        data: {
+            street: street
+        },
+        complete: function (data) {
+            var houses = JSON.parse(data.responseText);
+            addApartEditHouse(houses)
+        }
+    });
+}
+
+function addApartEditHouse(houses) {
+    var house_id = $('.modal-body').find('#house_id');
+    house_id.empty().append(($('<option>', {
+        value: '',
+        text: 'Выбрать дом'
+    })));
+    houses.forEach(function (house) {
+        house_id.append($('<option>', {
+            value: house.id,
+            text: house.name
+        }))
+    })
+}

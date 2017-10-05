@@ -3,24 +3,43 @@ package ru.asemenov.storage;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
-import ru.asemenov.models.House;
-import ru.asemenov.service.HibernateFactory;
 import ru.asemenov.models.Apartment;
+import ru.asemenov.service.HibernateFactory;
 
 import java.util.List;
 
+/**
+ * Apartments Storage.
+ */
 public class ApartmentsStorage {
+    /**
+     * SessionFactory.
+     */
     private final SessionFactory factory = HibernateFactory.getFactory();
+    /**
+     * Singleton.
+     */
+    private static final ApartmentsStorage INSTANCE = new ApartmentsStorage();
 
-    private static final ApartmentsStorage instance = new ApartmentsStorage();
-
+    /**
+     * Singleton.
+     * @return ApartmentsStorage.
+     */
     public static ApartmentsStorage getInstance() {
-        return instance;
+        return INSTANCE;
     }
 
+    /**
+     * Конструктор.
+     */
     private ApartmentsStorage() {
     }
 
+    /**
+     * Получить список квартир.
+     * @param house дом в котором должны находиться квартиры.
+     * @return List квартир.
+     */
     public List<Apartment> getAllApartments(int house) {
         List<Apartment> apartments = null;
         try (Session session = factory.openSession()) {
@@ -35,6 +54,10 @@ public class ApartmentsStorage {
         return apartments;
     }
 
+    /**
+     * Добавить новую квартиру.
+     * @param apartment новая квартира.
+     */
     public void addApartment(Apartment apartment) {
         try (Session session = factory.openSession()) {
             session.beginTransaction();
@@ -45,6 +68,10 @@ public class ApartmentsStorage {
         }
     }
 
+    /**
+     * Изменить привязку квартиры.
+     * @param apartment кварттира с новым расположением.
+     */
     public void editApartment(Apartment apartment) {
         try (Session session = factory.openSession()) {
             session.beginTransaction();
