@@ -44,4 +44,16 @@ public class HousesStorage {
             e.printStackTrace();
         }
     }
+
+    public void editHouse(House house) {
+        try (Session session = factory.openSession()) {
+            session.beginTransaction();
+            House edit = session.get(House.class, house.getId());
+            edit.setStreet(house.getStreet());
+            session.update(edit);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -44,4 +44,16 @@ public class ApartmentsStorage {
             e.printStackTrace();
         }
     }
+
+    public void editApartment(Apartment apartment) {
+        try (Session session = factory.openSession()) {
+            session.beginTransaction();
+            Apartment edit = session.get(Apartment.class, apartment.getId());
+            edit.setHouse(apartment.getHouse());
+            session.update(edit);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

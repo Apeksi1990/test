@@ -31,8 +31,13 @@ public class HouseServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         House house = new House();
-        house.setName(req.getParameter("name"));
         house.setStreet(new Street(Integer.valueOf(req.getParameter("street"))));
-        HousesStorage.getInstance().addHouse(house);
+        if (req.getParameter("house") != null) {
+            house.setId(Integer.parseInt(req.getParameter("house")));
+            HousesStorage.getInstance().editHouse(house);
+        } else {
+            house.setName(req.getParameter("name"));
+            HousesStorage.getInstance().addHouse(house);
+        }
     }
 }
