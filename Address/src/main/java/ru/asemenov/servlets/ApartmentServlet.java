@@ -30,6 +30,9 @@ public class ApartmentServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        Apartment apartment = new Apartment();
+        apartment.setName(req.getParameter("name"));
+        apartment.setHouse(new House(Integer.parseInt(req.getParameter("house"))));
+        ApartmentsStorage.getInstance().addApartment(apartment);
     }
 }
