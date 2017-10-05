@@ -5,6 +5,13 @@ public class Apartment {
     private String name;
     private House house;
 
+    public Apartment() {
+    }
+
+    public Apartment(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

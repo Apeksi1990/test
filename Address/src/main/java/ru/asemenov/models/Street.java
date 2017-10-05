@@ -4,6 +4,13 @@ public class Street {
     private int id;
     private String name;
 
+    public Street() {
+    }
+
+    public Street(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

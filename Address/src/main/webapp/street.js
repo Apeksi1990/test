@@ -22,19 +22,10 @@ function addStreets(streets) {
 function modalStreet() {
     $('.modal-title').empty().append('Добавить новую улицу');
     var body = $('.modal-body').empty();
-    body.append($('<input>', {
-        id: 'newStreet',
-        type: 'text',
-        class: 'form-control',
-        placeholder: 'Введите название новой улицы'
-    }));
-    body.append($('<button>', {
-        id: 'streetButton',
-        type: 'button',
-        class: 'btn btn-default',
-        text: 'Добавить',
-        onclick: 'addNewStreet()'
-    }));
+    body.append('<p>1. Написать название улицы</p>')
+        .append('<p>2. Нажать кнопку добавить</p>')
+        .append($('<input id="newStreet" type="text" class="form-control" placeholder="Введите название новой улицы">'))
+        .append($('<button type="button" class="btn btn-default" onclick="addNewStreet()" data-dismiss="modal">Добавить</button>'));
     $('#myModal').modal('show');
 }
 
@@ -48,7 +39,6 @@ function addNewStreet() {
             },
             complete: function () {
                 getStreets();
-                $('#myModal').modal('hide');
             }
         });
     } else {

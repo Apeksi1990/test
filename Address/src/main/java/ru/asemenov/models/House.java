@@ -5,6 +5,13 @@ public class House {
     private String name;
     private Street street;
 
+    public House() {
+    }
+
+    public House(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

@@ -3,6 +3,7 @@ package ru.asemenov.storage;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
+import ru.asemenov.models.Street;
 import ru.asemenov.service.HibernateFactory;
 import ru.asemenov.models.House;
 
@@ -32,5 +33,15 @@ public class HousesStorage {
             e.printStackTrace();
         }
         return houses;
+    }
+
+    public void addHouse(House house) {
+        try (Session session = factory.openSession()) {
+            session.beginTransaction();
+            session.save(house);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
