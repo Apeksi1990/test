@@ -1,4 +1,0 @@
-/**
- * Info.
- */
-package ru.asemenov;
