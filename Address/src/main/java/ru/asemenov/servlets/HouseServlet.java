@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import ru.asemenov.models.House;
 import ru.asemenov.models.Street;
+import ru.asemenov.servlets.adapters.HouseAdapter;
 import ru.asemenov.storage.HousesStorage;
 
 import javax.servlet.ServletException;
@@ -26,9 +27,9 @@ public class HouseServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        GsonBuilder b = new GsonBuilder();
-        b.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
-        Gson gson = b.create();
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(House.class, new HouseAdapter())
+                .create();
         int street = Integer.parseInt(req.getParameter("street"));
         List<House> houses = HousesStorage.getInstance().getAllHouses(street);
         String json = gson.toJson(houses);

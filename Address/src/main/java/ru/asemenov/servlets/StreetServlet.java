@@ -25,9 +25,7 @@ public class StreetServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        GsonBuilder b = new GsonBuilder();
-        b.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY);
-        Gson gson = b.create();
+        Gson gson = new GsonBuilder().create();
         List<Street> streets = StreetsStorage.getInstance().getAllStreets();
         String json = gson.toJson(streets);
         resp.setContentType("application/json");
