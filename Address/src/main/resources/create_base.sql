@@ -8,11 +8,13 @@ create table streets (
 create table houses (
   id serial primary key,
   name varchar(100) NOT NULL,
-  street_id int references streets(id) NOT NULL
+  street_id int references streets(id) NOT NULL,
+  UNIQUE(name, street_id)
 );
 
 create table apartments (
   id serial primary key,
   name varchar(100) NOT NULL,
-  house_id int references houses(id) NOT NULL
+  house_id int references houses(id) NOT NULL,
+  UNIQUE(name, house_id)
 );
