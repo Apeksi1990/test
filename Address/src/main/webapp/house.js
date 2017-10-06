@@ -97,7 +97,8 @@ function houseBDEdit() {
         },
         complete: function () {
             getStreets();
-            clearHouse()
+            clearHouse();
+            clearApartment()
         }
     });
 }
