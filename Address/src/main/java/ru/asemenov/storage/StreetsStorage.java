@@ -41,9 +41,14 @@ public class StreetsStorage {
     public List<Street> getAllStreets() {
         List<Street> streets = null;
         try (Session session = factory.openSession()) {
-            session.beginTransaction();
-            streets = session.createQuery("from Street").list();
-            session.getTransaction().commit();
+            try {
+                session.beginTransaction();
+                streets = session.createQuery("from Street").list();
+                session.getTransaction().commit();
+            } catch (Exception e) {
+                session.getTransaction().rollback();
+                e.printStackTrace();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -56,9 +61,14 @@ public class StreetsStorage {
      */
     public void addStreet(Street street) {
         try (Session session = factory.openSession()) {
-            session.beginTransaction();
-            session.save(street);
-            session.getTransaction().commit();
+            try {
+                session.beginTransaction();
+                session.save(street);
+                session.getTransaction().commit();
+            } catch (Exception e) {
+                session.getTransaction().rollback();
+                e.printStackTrace();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

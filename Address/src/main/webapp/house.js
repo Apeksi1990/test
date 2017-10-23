@@ -1,6 +1,9 @@
 function getHouse(street) {
     $.ajax('./house', {
         method: 'get',
+        error: function () {
+            alert('Нет связи с сервером')
+        },
         data: {
             street: street
         },
@@ -60,6 +63,9 @@ function addNewHouse() {
     if (street != '' && house != '') {
         $.ajax('./house', {
             method: 'post',
+            error: function () {
+                alert('Нет связи с сервером')
+            },
             data: {
                 name: house,
                 street: street
@@ -91,6 +97,9 @@ function houseBDEdit() {
     var house = $('#house_id').val();
     $.ajax('./house', {
         method: 'post',
+        error: function () {
+            alert('Нет связи с сервером')
+        },
         data: {
             street: street,
             house: house

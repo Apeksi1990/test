@@ -1,6 +1,9 @@
 function getStreets() {
     $.ajax('./street', {
         method: 'get',
+        error: function () {
+          alert('Нет связи с сервером')
+        },
         complete: function (data) {
             var streets = JSON.parse(data.responseText);
             addStreets(streets)
@@ -34,6 +37,9 @@ function addNewStreet() {
     if (street_name != '') {
         $.ajax('./street', {
             method: 'post',
+            error: function () {
+                alert('Нет связи с сервером')
+            },
             data: {
                 name: street_name
             },

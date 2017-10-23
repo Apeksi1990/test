@@ -43,11 +43,16 @@ public class ApartmentsStorage {
     public List<Apartment> getAllApartments(int house) {
         List<Apartment> apartments = null;
         try (Session session = factory.openSession()) {
-            session.beginTransaction();
-            Query query = session.createQuery("from Apartment where house.id=:house");
-            query.setParameter("house", house);
-            apartments = query.list();
-            session.getTransaction().commit();
+            try {
+                session.beginTransaction();
+                Query query = session.createQuery("from Apartment where house.id=:house");
+                query.setParameter("house", house);
+                apartments = query.list();
+                session.getTransaction().commit();
+            } catch (Exception e) {
+                session.getTransaction().rollback();
+                e.printStackTrace();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -60,9 +65,14 @@ public class ApartmentsStorage {
      */
     public void addApartment(Apartment apartment) {
         try (Session session = factory.openSession()) {
-            session.beginTransaction();
-            session.save(apartment);
-            session.getTransaction().commit();
+            try {
+                session.beginTransaction();
+                session.save(apartment);
+                session.getTransaction().commit();
+            } catch (Exception e) {
+                session.getTransaction().rollback();
+                e.printStackTrace();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -74,11 +84,16 @@ public class ApartmentsStorage {
      */
     public void editApartment(Apartment apartment) {
         try (Session session = factory.openSession()) {
-            session.beginTransaction();
-            Apartment edit = session.get(Apartment.class, apartment.getId());
-            edit.setHouse(apartment.getHouse());
-            session.update(edit);
-            session.getTransaction().commit();
+            try {
+                session.beginTransaction();
+                Apartment edit = session.get(Apartment.class, apartment.getId());
+                edit.setHouse(apartment.getHouse());
+                session.update(edit);
+                session.getTransaction().commit();
+            } catch (Exception e) {
+                session.getTransaction().rollback();
+                e.printStackTrace();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

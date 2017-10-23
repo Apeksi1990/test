@@ -1,6 +1,9 @@
 function getApartments(house) {
     $.ajax('./apartment', {
         method: 'get',
+        error: function () {
+            alert('Нет связи с сервером')
+        },
         data: {
             house: house
         },
@@ -63,6 +66,9 @@ function addNewApartment() {
     if (apartment != '' && house != '') {
         $.ajax('./apartment', {
             method: 'post',
+            error: function () {
+                alert('Нет связи с сервером')
+            },
             data: {
                 name: apartment,
                 house: house
@@ -95,6 +101,9 @@ function apartmentBDEdit() {
     var apartment = $('#apartment_id').val();
     $.ajax('./apartment', {
         method: 'post',
+        error: function () {
+            alert('Нет связи с сервером')
+        },
         data: {
             apartment: apartment,
             house: house
@@ -116,6 +125,9 @@ $(document).ready(function () {
 function getApartHouse(street) {
     $.ajax('./house', {
         method: 'get',
+        error: function () {
+            alert('Нет связи с сервером')
+        },
         data: {
             street: street
         },
